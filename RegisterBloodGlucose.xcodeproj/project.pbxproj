@@ -16,6 +16,7 @@
 		23EBC6EC271019AB00C225D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23EBC6EA271019AB00C225D8 /* LaunchScreen.storyboard */; };
 		23EBC6F62713659B00C225D8 /* Registry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EBC6F42713659B00C225D8 /* Registry+CoreDataClass.swift */; };
 		23EBC6F72713659B00C225D8 /* Registry+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EBC6F52713659B00C225D8 /* Registry+CoreDataProperties.swift */; };
+		23EBC7242713D02D00C225D8 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 23EBC7232713D02D00C225D8 /* Charts */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23EBC7242713D02D00C225D8 /* Charts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +102,9 @@
 			dependencies = (
 			);
 			name = RegisterBloodGlucose;
+			packageProductDependencies = (
+				23EBC7232713D02D00C225D8 /* Charts */,
+			);
 			productName = RegisterBloodGlucose;
 			productReference = 23EBC6D9271019A900C225D8 /* RegisterBloodGlucose.app */;
 			productType = "com.apple.product-type.application";
@@ -128,6 +133,9 @@
 				Base,
 			);
 			mainGroup = 23EBC6D0271019A900C225D8;
+			packageReferences = (
+				23EBC7222713D02D00C225D8 /* XCRemoteSwiftPackageReference "Charts" */,
+			);
 			productRefGroup = 23EBC6DA271019A900C225D8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -382,6 +390,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		23EBC7222713D02D00C225D8 /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts.git";
+			requirement = {
+				kind = exactVersion;
+				version = 4.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		23EBC7232713D02D00C225D8 /* Charts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 23EBC7222713D02D00C225D8 /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = Charts;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		23EBC6E5271019A900C225D8 /* RegisterBloodGlucose.xcdatamodeld */ = {

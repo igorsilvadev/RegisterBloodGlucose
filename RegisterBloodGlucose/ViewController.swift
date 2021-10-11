@@ -11,7 +11,6 @@ class ViewController: UIViewController, UITextFieldDelegate{
  
     
     var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
     var records: [Registry] = []
     let suffix = " mg/dL"
     
@@ -48,8 +47,8 @@ class ViewController: UIViewController, UITextFieldDelegate{
     lazy var bloodGlucoseLevel: UILabel = {
         let outputText = UILabel()
         outputText.textAlignment = NSTextAlignment.center
-        outputText.font = .systemFont(ofSize: 50)
-        outputText.text = ""
+        outputText.font = UIFont.systemFont(ofSize: view.frame.width/12.0)
+        outputText.text = suffix
         outputText.textColor = .black
         return outputText
     }()
@@ -65,6 +64,7 @@ class ViewController: UIViewController, UITextFieldDelegate{
         view.addSubview(saveButton)
         view.addSubview(bloodGlucoseLevel)
         setupConstraints()
+        
         self.getRecords()
     }
     
@@ -78,11 +78,6 @@ class ViewController: UIViewController, UITextFieldDelegate{
             getRecords()
         }
     }
-    
-    
-    
-
-    
     
     
     private func getRecords(){
@@ -123,44 +118,45 @@ class ViewController: UIViewController, UITextFieldDelegate{
         }
         
     }
-    
-    
-    
-    
-    
-    
-    
+
+
     private func setupConstraints(){
+    
         self.inputGlucoseLevel.translatesAutoresizingMaskIntoConstraints = false
         self.saveButton.translatesAutoresizingMaskIntoConstraints = false
         self.bloodGlucoseLevel.translatesAutoresizingMaskIntoConstraints = false
         self.tableView.translatesAutoresizingMaskIntoConstraints = false
-        
+        let safeArea = view.safeAreaLayoutGuide
         let contraints = [
+            
+            //Label Blood Glucose Level
+            
+            self.bloodGlucoseLevel.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            self.bloodGlucoseLevel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            
             //Input Glucose Level
+            
             self.inputGlucoseLevel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            self.inputGlucoseLevel.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -250),
+            self.inputGlucoseLevel.topAnchor.constraint(equalTo: self.bloodGlucoseLevel.bottomAnchor, constant: 10),
+            
             
             //Save Button
-            self.saveButton.centerXAnchor.constraint(equalTo: self.inputGlucoseLevel.centerXAnchor),
-            self.saveButton.centerYAnchor.constraint(equalTo: self.inputGlucoseLevel.centerYAnchor, constant: 50),
             
-            //Blood Glucose Result View
-            self.bloodGlucoseLevel.centerXAnchor.constraint(equalTo: self.inputGlucoseLevel.centerXAnchor),
-            self.bloodGlucoseLevel.centerYAnchor.constraint(equalTo: self.inputGlucoseLevel.centerYAnchor, constant: -50),
-            self.bloodGlucoseLevel.widthAnchor.constraint(equalTo: self.inputGlucoseLevel.widthAnchor, constant: 50),
-            self.bloodGlucoseLevel.heightAnchor.constraint(equalTo: self.inputGlucoseLevel.heightAnchor, constant: 50),
+            self.saveButton.topAnchor.constraint(equalTo: self.inputGlucoseLevel.bottomAnchor, constant: 10),
+            self.saveButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            self.saveButton.widthAnchor.constraint(equalToConstant: 100.0),
+            self.saveButton.heightAnchor.constraint(equalToConstant: 30.0),
             
-            
+          
             
             //Table View
             
-
-            self.tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -85),
-            self.tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 250),
-            self.tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            self.tableView.rightAnchor.constraint(equalTo: view.rightAnchor)
-            
+            self.tableView.topAnchor.constraint(equalTo: self.saveButton.bottomAnchor, constant: 25),
+            self.tableView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor,constant: 10),
+            self.tableView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            self.tableView.leftAnchor.constraint(equalTo: safeArea.leftAnchor),
+            self.tableView.rightAnchor.constraint(equalTo: safeArea.rightAnchor)
             
         ]
         NSLayoutConstraint.activate(contraints)
@@ -168,6 +164,8 @@ class ViewController: UIViewController, UITextFieldDelegate{
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource{
+    
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return records.count
